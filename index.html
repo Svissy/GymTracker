@@ -8,46 +8,35 @@
         :root {
             --color-bg-base: #000000;
             --color-bg-elevated: #1a1a1a;
-            --color-bg-surface: #2a2a2a;
             --color-text-primary: #ffffff;
             --color-text-secondary: #b0b0b0;
             --color-text-muted: #808080;
             --color-primary: #00d9ff;
-            --color-primary-hover: #00b8d4;
-            --color-success: #00ff88;
-            --color-danger: #ff3366;
-            --color-warning: #ffaa00;
             --color-border: #333333;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--color-bg-base);
             color: var(--color-text-primary);
             line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
             padding-bottom: 80px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .tabs {
             display: flex;
-            background: var(--color-bg-elevated);
-            border-bottom: 1px solid var(--color-border);
+            background: #111;
             position: sticky;
             top: 0;
             z-index: 99;
-            overflow-x: auto;
         }
 
         .tab {
             flex: 1;
-            padding: 16px 12px;
+            padding: 16px;
             text-align: center;
             background: transparent;
             border: none;
@@ -55,9 +44,7 @@
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
-            white-space: nowrap;
+            border-bottom: 3px solid transparent;
         }
 
         .tab.active {
@@ -65,11 +52,7 @@
             border-bottom-color: var(--color-primary);
         }
 
-        .content {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .content { padding: 20px; }
 
         .day-selector {
             display: flex;
@@ -88,28 +71,15 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            white-space: normal;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 217, 255, 0.1);
-        }
-
-        .day-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.2);
         }
 
         .day-btn.active {
             background: linear-gradient(135deg, var(--color-primary) 0%, #00b8d4 100%);
-            color: #000000;
+            color: #000;
             border-color: var(--color-primary);
-            box-shadow: 0 4px 16px rgba(0, 217, 255, 0.4);
         }
 
-        .exercise-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .exercise-list { display: flex; flex-direction: column; gap: 12px; }
 
         .exercise-card {
             background: var(--color-bg-elevated);
@@ -118,276 +88,86 @@
             padding: 20px;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 217, 255, 0.05);
+            cursor: pointer;
+            user-select: none;
         }
 
         .exercise-card:hover {
             border-color: var(--color-primary);
-            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(0, 217, 255, 0.15);
         }
 
         .exercise-card:active {
             transform: scale(0.98);
         }
 
+        .exercise-card.completed {
+            border-color: var(--color-primary);
+            background: rgba(0, 217, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.25);
+        }
+
         .checkbox {
-            width: 24px;
-            height: 24px;
-            min-width: 24px;
-            border: 2px solid var(--color-border);
-            border-radius: 6px;
-            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--color-border);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
         }
 
         .exercise-card.completed .checkbox {
-            background: var(--color-success);
-            border-color: var(--color-success);
+            background: var(--color-primary);
+            border-color: var(--color-primary);
         }
 
         .checkbox-icon {
-            color: white;
+            color: #000000;
+            font-size: 22px;
             font-weight: bold;
-            font-size: 16px;
             display: none;
         }
 
-        .exercise-card.completed .checkbox-icon {
-            display: block;
-        }
+        .exercise-card.completed .checkbox-icon { display: block; }
 
-        .exercise-content {
-            flex: 1;
-        }
+        .exercise-content { flex: 1; }
 
         .exercise-name {
             font-size: 18px;
             font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 8px;
-            line-height: 1.4;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
 
         .exercise-card.completed .exercise-name {
             text-decoration: line-through;
-            opacity: 0.6;
+            opacity: 0.75;
         }
 
         .exercise-meta {
             font-size: 15px;
             color: var(--color-text-muted);
             display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .exercise-sets, .exercise-reps {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-        }
-
-        .exercise-sets {
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-
-        .delete-btn {
-            width: 42px;
-            height: 42px;
-            min-width: 42px;
-            background: var(--color-bg-surface);
-            border: 2px solid var(--color-border);
-            border-radius: 12px;
-            color: var(--color-text-primary);
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .delete-btn:hover {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
-        }
-
-        .delete-btn:active {
-            transform: scale(0.9);
-        }
-
-        .delete-btn:last-child {
-            background: var(--color-danger);
-            border-color: var(--color-danger);
-            color: white;
-        }
-
-        .delete-btn:last-child:hover {
-            background: #ff1a4d;
-            border-color: #ff1a4d;
-        }
-
-        .add-exercise-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, #00b8d4 100%);
-            border: none;
-            border-radius: 16px;
-            color: #000000;
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 217, 255, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .add-exercise-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 217, 255, 0.4);
-        }
-
-        .add-exercise-btn:active {
-            transform: scale(0.98);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--color-bg-elevated);
-            border-radius: 16px;
-            padding: 24px;
-            width: 100%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--color-text-secondary);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            background: var(--color-bg-base);
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            color: var(--color-text-primary);
-            font-size: 15px;
-        }
-
-        .form-input:focus {
-            outline: 2px solid var(--color-primary);
-            border-color: transparent;
-        }
-
-        .modal-actions {
-            display: flex;
             gap: 12px;
-            margin-top: 24px;
         }
 
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        .btn-primary:active {
-            background: var(--color-primary-hover);
-        }
-
-        .btn-secondary {
-            background: var(--color-bg-surface);
-            color: var(--color-text-primary);
+        .exercise-sets { 
+            color: var(--color-primary); 
+            font-weight: 600; 
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: var(--color-text-muted);
         }
 
-        .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-
-        @media (min-width: 768px) {
-            body {
-                padding-bottom: 40px;
-            }
-
-            .tab {
-                font-size: 20px;
-                padding: 20px 16px;
-            }
-
-            .day-btn {
-                padding: 12px 24px;
-                font-size: 15px;
-            }
-
-            .exercise-card {
-                padding: 20px;
-            }
-
-            .exercise-name {
-                font-size: 16px;
-            }
-
-            .exercise-meta {
-                font-size: 14px;
-            }
-        }
+        .empty-state-icon { font-size: 60px; margin-bottom: 12px; }
     </style>
 </head>
 <body>
@@ -400,25 +180,6 @@
         <div class="day-selector" id="daySelector"></div>
         <div class="day-selector" id="variantSelector" style="display: none;"></div>
         <div class="exercise-list" id="exerciseList"></div>
-        <button class="add-exercise-btn" onclick="openAddModal()">➕ Додати вправу</button>
-    </div>
-
-    <div class="modal" id="addModal">
-        <div class="modal-content">
-            <div class="modal-header" id="modalTitle">Додати вправу</div>
-            <div class="form-group">
-                <label class="form-label">Назва вправи</label>
-                <input type="text" class="form-input" id="exerciseName" placeholder="Наприклад: Жим штанги лежачи">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Підходи × Повторення</label>
-                <input type="text" class="form-input" id="exerciseSets" placeholder="Наприклад: 3×10-12">
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-secondary" onclick="closeAddModal()">Скасувати</button>
-                <button class="btn btn-primary" onclick="addExercise()">Додати</button>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -547,7 +308,6 @@
         let currentProgram = 'fullbody';
         let currentDay = 'day1';
         let currentVariant = 'variantA';
-        let userWorkouts = JSON.parse(JSON.stringify(workouts));
         let completedExercises = {};
 
         function init() {
@@ -558,10 +318,9 @@
         }
 
         function setupTabs() {
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
+            document.querySelectorAll('.tab').forEach(tab => {
                 tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
                     currentProgram = tab.dataset.program;
                     currentDay = 'day1';
@@ -575,7 +334,6 @@
 
         function renderDaySelector() {
             const container = document.getElementById('daySelector');
-            
             if (currentProgram === 'fullbody') {
                 const days = [
                     { key: 'day1', label: 'Тренування А' },
@@ -593,54 +351,37 @@
                     { key: 'day2', label: 'День 2: Груди+Плечі' },
                     { key: 'day3', label: 'День 3: Ноги+Плечі' }
                 ];
-                
-                let html = days.map(day => `
+                container.innerHTML = days.map(day => `
                     <button class="day-btn ${currentDay === day.key ? 'active' : ''}" onclick="switchDay('${day.key}')">
                         ${day.label}
                     </button>
                 `).join('');
-                
-                container.innerHTML = html;
             }
         }
 
         function renderVariantSelector() {
             const container = document.getElementById('variantSelector');
-            
             if (currentProgram === 'fullbody') {
-                container.innerHTML = '';
                 container.style.display = 'none';
                 return;
             }
-            
             container.style.display = 'flex';
             let html = '';
-            
             if (currentDay === 'day1') {
                 html = `
-                    <button class="day-btn ${currentVariant === 'variantA' ? 'active' : ''}" onclick="switchVariant('variantA')">
-                        Варіант А
-                    </button>
-                    <button class="day-btn ${currentVariant === 'variantB' ? 'active' : ''}" onclick="switchVariant('variantB')">
-                        Варіант Б
-                    </button>
+                    <button class="day-btn ${currentVariant === 'variantA' ? 'active' : ''}" onclick="switchVariant('variantA')">Варіант А</button>
+                    <button class="day-btn ${currentVariant === 'variantB' ? 'active' : ''}" onclick="switchVariant('variantB')">Варіант Б</button>
                 `;
             } else if (currentDay === 'day2') {
                 html = `
-                    <button class="day-btn ${currentVariant === 'variantA' ? 'active' : ''}" onclick="switchVariant('variantA')">
-                        Варіант А
-                    </button>
-                    <button class="day-btn ${currentVariant === 'variantB' ? 'active' : ''}" onclick="switchVariant('variantB')">
-                        Варіант Б
-                    </button>
-                    <button class="day-btn ${currentVariant === 'variantC' ? 'active' : ''}" onclick="switchVariant('variantC')">
-                        Варіант В
-                    </button>
+                    <button class="day-btn ${currentVariant === 'variantA' ? 'active' : ''}" onclick="switchVariant('variantA')">Варіант А</button>
+                    <button class="day-btn ${currentVariant === 'variantB' ? 'active' : ''}" onclick="switchVariant('variantB')">Варіант Б</button>
+                    <button class="day-btn ${currentVariant === 'variantC' ? 'active' : ''}" onclick="switchVariant('variantC')">Варіант В</button>
                 `;
             } else {
                 container.style.display = 'none';
+                return;
             }
-            
             container.innerHTML = html;
         }
 
@@ -660,15 +401,11 @@
 
         function renderExercises() {
             const container = document.getElementById('exerciseList');
-            let exercises;
-            
-            if (currentProgram === 'fullbody') {
-                exercises = userWorkouts[currentProgram][currentDay];
-            } else {
-                exercises = userWorkouts[currentProgram][currentDay][currentVariant];
-            }
+            let exercises = currentProgram === 'fullbody' 
+                ? (workouts[currentProgram]?.[currentDay] || [])
+                : (workouts[currentProgram]?.[currentDay]?.[currentVariant] || []);
 
-            if (!exercises || exercises.length === 0) {
+            if (exercises.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-state-icon">🏋️</div>
@@ -680,10 +417,11 @@
 
             container.innerHTML = exercises.map((exercise, index) => {
                 const key = `${currentProgram}-${currentDay}-${currentVariant}-${index}`;
-                const isCompleted = completedExercises[key] || false;
-                const [sets, reps] = exercise.sets.split('×');
+                const isCompleted = !!completedExercises[key];
+                const [sets = '', reps = ''] = exercise.sets.split('×');
+
                 return `
-                    <div class="exercise-card ${isCompleted ? 'completed' : ''}" onclick="toggleComplete('${key}', event)">
+                    <div class="exercise-card ${isCompleted ? 'completed' : ''}" onclick="toggleComplete('${key}')">
                         <div class="checkbox">
                             <span class="checkbox-icon">✓</span>
                         </div>
@@ -691,101 +429,16 @@
                             <div class="exercise-name">${exercise.name}</div>
                             <div class="exercise-meta">
                                 <span class="exercise-sets">Підходи: ${sets}</span>
-                                <span class="exercise-reps">Повторення: ${reps}</span>
+                                <span>Повторення: ${reps}</span>
                             </div>
                         </div>
-                        <button class="delete-btn" onclick="editExercise(event, ${index})">✎</button>
-                        <button class="delete-btn" onclick="deleteExercise(event, ${index})">×</button>
                     </div>
                 `;
             }).join('');
         }
 
-        function toggleComplete(key, event) {
-            if (event.target.classList.contains('delete-btn') || event.target.parentElement.classList.contains('delete-btn')) {
-                return;
-            }
+        function toggleComplete(key) {
             completedExercises[key] = !completedExercises[key];
-            renderExercises();
-        }
-
-        function deleteExercise(e, index) {
-            e.stopPropagation();
-            if (confirm('Видалити цю вправу?')) {
-                if (currentProgram === 'fullbody') {
-                    userWorkouts[currentProgram][currentDay].splice(index, 1);
-                } else {
-                    userWorkouts[currentProgram][currentDay][currentVariant].splice(index, 1);
-                }
-                renderExercises();
-            }
-        }
-
-        let editingIndex = null;
-
-        function openAddModal() {
-            editingIndex = null;
-            document.getElementById('modalTitle').textContent = 'Додати вправу';
-            document.getElementById('addModal').classList.add('active');
-            document.getElementById('exerciseName').value = '';
-            document.getElementById('exerciseSets').value = '';
-        }
-
-        function editExercise(e, index) {
-            e.stopPropagation();
-            editingIndex = index;
-            let exercise;
-            if (currentProgram === 'fullbody') {
-                exercise = userWorkouts[currentProgram][currentDay][index];
-            } else {
-                exercise = userWorkouts[currentProgram][currentDay][currentVariant][index];
-            }
-            document.getElementById('modalTitle').textContent = 'Редагувати вправу';
-            document.getElementById('exerciseName').value = exercise.name;
-            document.getElementById('exerciseSets').value = exercise.sets;
-            document.getElementById('addModal').classList.add('active');
-        }
-
-        function closeAddModal() {
-            document.getElementById('addModal').classList.remove('active');
-        }
-
-        function addExercise() {
-            const name = document.getElementById('exerciseName').value.trim();
-            const sets = document.getElementById('exerciseSets').value.trim();
-
-            if (!name) {
-                alert('Будь ласка, введіть назву вправи');
-                return;
-            }
-
-            if (currentProgram === 'fullbody') {
-                if (editingIndex !== null) {
-                    userWorkouts[currentProgram][currentDay][editingIndex] = {
-                        name: name,
-                        sets: sets || '3×10'
-                    };
-                } else {
-                    userWorkouts[currentProgram][currentDay].push({
-                        name: name,
-                        sets: sets || '3×10'
-                    });
-                }
-            } else {
-                if (editingIndex !== null) {
-                    userWorkouts[currentProgram][currentDay][currentVariant][editingIndex] = {
-                        name: name,
-                        sets: sets || '4×12'
-                    };
-                } else {
-                    userWorkouts[currentProgram][currentDay][currentVariant].push({
-                        name: name,
-                        sets: sets || '4×12'
-                    });
-                }
-            }
-
-            closeAddModal();
             renderExercises();
         }
 
@@ -793,4 +446,3 @@
     </script>
 </body>
 </html>
-
